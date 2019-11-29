@@ -1,0 +1,1 @@
+web: gunicorn findmydoctor.wsgi --log-file

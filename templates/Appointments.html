@@ -1,0 +1,36 @@
+{% extends 'doctorbase.html' %}
+{% block title %}
+    <title>Appointments</title>
+{% endblock %}
+{% block content %}
+    <br/><br/>
+        <div class="container">
+	<div class="well" style="color: maroon" align="center"><p align="center">All Appointments</p></div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Appointment Id</th>
+        <th>Patient Name</th>
+        <th>Time</th>
+        <th>Date</th>
+        <th>Email Id(UserId)</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for appointment in appointments %}
+      <tr>
+        <td>{{ appointment.id }}</td>
+        <td>{{ appointment.name }}</td>
+        <td>{{ appointment.appointment_time }}</td>
+        <td>{{ appointment.appointment_date }}</td>
+        <td>{{ appointment.email }}</td>
+        <td>{{ appointment.phone }}</td>
+      </tr>
+    {% endfor %}
+ </tbody>
+  </table>
+</div>
+        <hr/><br/>
+{% endblock %}

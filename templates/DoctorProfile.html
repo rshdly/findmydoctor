@@ -1,0 +1,581 @@
+{% extends 'doctorbase.html' %}
+{% block title %}
+    <title>Doctor Profile</title>
+{% endblock %}
+{% block content %}
+    <div class="jumbotron">
+		<div class="well" align="center"  style="color: Purple"><h2>Doctor Profile</h2></div>
+
+	<form class="form-horizontal" method='post' enctype="multipart/form-data">
+		{% csrf_token %}
+                <div class="row">
+			    <div class="col-md-2">
+                   <img src="{{ user.profile.photo.url }}" alt="MY pic" width="125"/>&nbsp
+                            <input type="file" name="photo" class="btn btn-success"/>
+			</div>
+			<div class="col-md-5">
+		<div class="form-group">
+			<label for="name" class="control-label col-sm-4">First Name:</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" name="firstname" value="{{ user.first_name }}" required/>
+		</div></div><br/>
+		<div class="form-group">
+			<label for="name" class="control-label col-sm-4">Last Name:</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" name="lastname" value="{{ user.last_name }}" required/>
+		</div></div>
+		<br/>
+		<div class="form-group">
+			<label class="control-label col-sm-4">Phone:</label>
+			<div class="col-sm-8">
+			<input type="text" class="form-control" name="phone" value="{{ user.profile.phone }}" required/>
+		</div></div>
+
+			</div>
+			<div class="col-md-5">
+
+		<div class="form-group">
+			<label for="name" class="control-label col-sm-4">Email :</label>
+			<div class="col-sm-8">
+			<input type="email" class="form-control" name="email" value="{{ user.email }}" required/>
+		</div></div>
+		<br/><br/>
+		<div class="form-group">
+			<label class="control-label col-sm-4">Qualification:</label>
+			<div class="col-sm-8">
+			<select name="qualification" class="form-control">
+				{% if user.profile.qualification == 'Phd' %}
+                    <option selected="true">Phd</option>
+				{% else %}
+					<option>Phd</option>
+				{% endif %}
+                {% if user.profile.qualification == 'MBBS' %}
+				    <option selected="true">MBBS</option>
+				{% else %}
+					<option>MBBS</option>
+				{% endif %}
+                {% if user.profile.qualification == 'MD' %}
+				    <option selected="true">MD</option>
+				{% else %}
+					<option>MD</option>
+				{% endif %}
+                {% if user.profile.qualification == 'BPED' %}
+				    <option selected="true">BPED</option>
+				{% else %}
+					<option>BPED</option>
+				{% endif %}
+                {% if user.profile.qualification == 'BPharma' %}
+                    <option selected="true">BPharma</option>
+				{% else %}
+					<option>BPharma</option>
+                {% endif %}
+			</select>
+			</div>
+			</div>
+			</div>
+
+			</div>
+<div class="row">
+	<div class="col-md-6">
+	<div class="col-md-10">
+		<div class="form-group">
+			<label for="city" class="control-label col-sm-4">Experience(yrs):</label>
+			<div class="col-sm-8">
+			<select name="experience" class="form-control">
+                {% if user.profile.experience == 1 %}
+					<option selected="true">1</option>
+				{% else %}
+					<option>1</option>
+				{% endif %}
+                {% if user.profile.experience == 2 %}
+					<option selected="true">2</option>
+				{% else %}
+					<option>2</option>
+				{% endif %}
+                {% if user.profile.experience == 3 %}
+					<option selected="true">3</option>
+				{% else %}
+					<option>3</option>
+				{% endif %}
+                {% if user.profile.experience == 4 %}
+					<option selected="true">4</option>
+				{% else %}
+					<option>4</option>
+				{% endif %}
+                {% if user.profile.experience == 5 %}
+					<option selected="true">5</option>
+				{% else %}
+					<option>5</option>
+				{% endif %}
+                {% if user.profile.experience == 6 %}
+					<option selected="true">6</option>
+				{% else %}
+					<option>6</option>
+				{% endif %}
+                {% if user.profile.experience == 7 %}
+					<option selected="true">7</option>
+				{% else %}
+					<option>7</option>
+				{% endif %}
+                {% if user.profile.experience == 8 %}
+					<option selected="true">8</option>
+				{% else %}
+					<option>8</option>
+				{% endif %}
+                {% if user.profile.experience == 9 %}
+					<option selected="true">9</option>
+				{% else %}
+					<option>9</option>
+				{% endif %}
+                {% if user.profile.experience == 10 %}
+					<option selected="true">10</option>
+				{% else %}
+					<option>10</option>
+				{% endif %}
+                {% if user.profile.experience == 11 %}
+					<option selected="true">11</option>
+				{% else %}
+					<option>11</option>
+				{% endif %}
+                {% if user.profile.experience == 12 %}
+					<option selected="true">12</option>
+				{% else %}
+					<option>12</option>
+                {% endif %}
+			</select>
+			</div>
+		</div>
+			<div class="form-group">
+			<label for="name" class="control-label col-sm-4">Timings:</label>
+		<label for="carName" class="control-label col-sm-4">Days :</label>
+			<div class="col-sm-4">
+			<select name="weekdays" class="form-control">
+				{% if  user.profile.weekdays == 'Monday-Friday'%}
+					<option selected="true">Monday-Friday</option>
+				{% else %}
+					<option>Monday-Friday</option>
+				{% endif %}
+                {% if  user.profile.weekdays == 'Saturday-Sunday'%}
+					<option selected="true">Saturday-Sunday</option>
+				{% else %}
+					<option>Saturday-Sunday</option>
+                {% endif %}
+			</select>
+			</div>
+			</div><br/><br/><br/>
+			<div class="form-group">
+			<label for="name" class="control-label col-sm-4"></label>
+		<label for="carName" class="control-label col-sm-4">Days :</label>
+			<div class="col-sm-4">
+			<select name="weekends" class="form-control">
+                {% if  user.profile.weekends == 'Monday-Friday'%}
+					<option selected="true">Monday-Friday</option>
+				{% else %}
+					<option>Monday-Friday</option>
+				{% endif %}
+                {% if  user.profile.weekends == 'Saturday-Sunday'%}
+					<option selected="true">Saturday-Sunday</option>
+				{% else %}
+					<option>Saturday-Sunday</option>
+                {% endif %}
+			</select>
+			</div>
+			</div>
+			<br/>
+			<br/>
+			<div class="form-group">
+			<label for="carName" class="control-label col-sm-4">Clinic Address:</label>
+			<label for="carName" class="control-label col-sm-4">State :</label>
+			<div class="col-sm-4">
+
+			<select name="state" class="form-control">
+                {% if  user.profile.state == 'Uttar Pradesh'%}
+					<option selected="true">Uttar Pradesh</option>
+				{% else %}
+					<option>Uttar Pradesh</option>
+				{% endif %}
+                {% if  user.profile.state == 'Delhi'%}
+					<option selected="true">Delhi</option>
+				{% else %}
+					<option>Delhi</option>
+				{% endif %}
+                {% if  user.profile.state == 'Harayana'%}
+                	<option selected="true">Harayana</option>
+				{% else %}
+					<option>Harayana</option>
+				{% endif %}
+                {% if  user.profile.state == 'Maharashtra'%}
+                	<option selected="true">Maharashtra</option>
+				{% else %}
+					<option>Maharashtra</option>
+				{% endif %}
+                {% if  user.profile.state == 'Karnataka'%}
+					<option selected="true">Karnataka</option>
+				{% else %}
+					<option>Karnataka</option>
+				{% endif %}
+                {% if  user.profile.state == 'Goa'%}
+					<option selected="true">Goa</option>
+				{% else %}
+					<option>Goa</option>
+                {% endif %}
+			</select>
+			</div>
+			</div>
+			<div class="form-group">
+			<label for="carName" class="control-label col-sm-4">Address :</label>
+			<div class="col-sm-8">
+                <input type="text" class="form-control" name="address" value="{{ user.profile.address }}"/>
+		</div>
+			</div>
+		&nbsp&nbsp&nbsp
+		</div>
+		</div>
+	<div class="col-md-6">
+	<div class="col-md-10"><div class="form-group">
+			<label for="carnumber" class="control-label col-sm-3">Fee :</label>
+			<div class="col-sm-3">
+                            <input type="text" class="form-control" name="fee" value="{{ user.profile.fee }}"/>
+		</div><label for="carnumber" class="control-label col-sm-3">Speciality:</label>
+			<div class="col-sm-3">
+			<select name="speciality" class="form-control">
+				{% if user.profile.speciality == 'Neurosurgery' %}
+					<option selected="true">Neurosurgery</option>
+				{% else %}
+					<option>Neurosurgery</option>
+				{% endif %}
+				{% if user.profile.speciality == 'Acupuncture' %}
+					<option selected="true">Acupuncture</option>
+				{% else %}
+					<option>Acupuncture</option>
+				{% endif %}
+				{% if user.profile.speciality == 'Cardiac Surgery' %}
+					<option selected="true">Cardiac Surgery</option>
+				{% else %}
+					<option>Cardiac Surgery</option>
+				{% endif %}
+				{% if user.profile.speciality == 'Dentistry' %}
+					<option selected="true">Dentistry</option>
+				{% else %}
+					<option>Dentistry</option>
+				{% endif %}
+				{% if user.profile.speciality == 'Ear, Nose, and Throat' %}
+					<option selected="true">Ear, Nose, and Throat</option>
+				{% else %}
+					<option>Ear, Nose, and Throat</option>
+				{% endif %}
+				{% if user.profile.speciality == 'Gynecologic Oncology' %}
+					<option selected="true">Gynecologic Oncology</option>
+				{% else %}
+					<option>Gynecologic Oncology</option>
+				{% endif %}
+				{% if user.profile.speciality == 'Plastic Surgery' %}
+					<option selected="true">Plastic Surgery</option>
+				{% else %}
+					<option>Plastic Surgery</option>
+				{% endif %}
+			</select>
+		</div>
+		</div>
+			<div class="form-group">
+			<label for="carName" class="control-label col-sm-3">1st Shift :</label>
+			<div class="col-sm-4">
+			<select name="weekdays_shift1_from" class="form-control">
+				{% if user.profile.weekdays_shift1_from == '9:30am' %}
+					<option selected="true">9:30am</option>
+				{% else %}
+					<option>9:30am</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift1_from == '10:00am' %}
+					<option selected="true">10:00am</option>
+				{% else %}
+					<option>10:00am</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift1_from == '10:30am' %}
+					<option selected="true">10:30am</option>
+				{% else %}
+					<option>10:30am</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift1_from == '11:00am' %}
+					<option selected="true">11:00am</option>
+				{% else %}
+					<option>11:00am</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift1_from == '11:30am' %}
+					<option selected="true">11:30am</option>
+				{% else %}
+					<option>11:00am</option>
+				{% endif %}
+			</select>
+			</div>
+
+			<label for="carName" class="control-label col-sm-1">To</label>
+			<div class="col-sm-4">
+			<select name="weekdays_shift1_to" class="form-control">
+				{% if user.profile.weekdays_shift1_to == '12:30pm' %}
+					<option selected="true">12:30pm</option>
+				{% else %}
+					<option>12:30pm</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift1_to == '01:00pm' %}
+					<option selected="true">01:00pm</option>
+				{% else %}
+					<option>01:00pm</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift1_to == '01:30pm' %}
+					<option selected="true">01:30pm</option>
+				{% else %}
+					<option>01:30pm</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift1_to == '02:00pm' %}
+					<option selected="true">02:00pm</option>
+				{% else %}
+					<option>02:00pm</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift1_to == '02:30pm' %}
+					<option selected="true">02:30pm</option>
+				{% else %}
+					<option>02:30pm</option>
+				{% endif %}
+			</select>
+			</div>
+		</div>
+			<div class="form-group">
+			<label for="carName" class="control-label col-sm-3">2nd Shift :</label>
+			<div class="col-sm-4">
+			<select name="weekdays_shift2_from" class="form-control">
+				{% if user.profile.weekdays_shift2_from == '05:00pm' %}
+					<option selected="true">05:00pm</option>
+				{% else %}
+					<option>05:00pm</option>
+				{% endif%}
+				{% if user.profile.weekdays_shift2_from == '05:30pm' %}
+					<option selected="true">05:30pm</option>
+				{% else %}
+					<option>05:30pm</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift2_from == '06:00pm' %}
+					<option selected="true">06:00pm</option>
+				{% else %}
+					<option>06:00pm</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift2_from == '06:30pm' %}
+					<option selected="true">06:30pm</option>
+				{% else %}
+					<option>06:30pm</option>
+				{% endif %}
+			</select>
+			</div>
+
+			<label for="carName" class="control-label col-sm-1">To</label>
+			<div class="col-sm-4">
+			<select name="weekdays_shift2_to" class="form-control">
+				{% if user.profile.weekdays_shift2_to == '08:00pm' %}
+					<option selected="true">08:00pm</option>
+				{% else %}
+					<option>08:00pm</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift2_to == '08:30pm' %}
+					<option selected="true">08:30pm</option>
+				{% else %}
+					<option>08:30pm</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift2_to == '09:00pm' %}
+					<option selected="true">09:00pm</option>
+				{% else %}
+					<option>09:00pm</option>
+				{% endif %}
+				{% if user.profile.weekdays_shift2_to == '09:30pm' %}
+					<option selected="true">09:30pm</option>
+				{% else %}
+					<option>09:30pm</option>
+				{% endif %}
+			</select>
+			</div>
+		</div>
+			<div class="form-group">
+			<label for="carName" class="control-label col-sm-3">1st Shift :</label>
+			<div class="col-sm-4">
+			<select name="weekends_shift1_from" class="form-control">
+				{% if user.profile.weekends_shift1_from == '9:30am' %}
+					<option selected="true">9:30am</option>
+				{% else %}
+					<option>9:30am</option>
+				{% endif %}
+				{% if user.profile.weekends_shift1_from == '10:00am' %}
+					<option selected="true">10:00am</option>
+				{% else %}
+					<option>10:00am</option>
+				{% endif %}
+				{% if user.profile.weekends_shift1_from == '10:00am' %}
+					<option selected="true">10:30am</option>
+				{% else %}
+					<option>10:30am</option>
+				{% endif %}
+				{% if user.profile.weekends_shift1_from == '11:00am' %}
+					<option selected="true">11:00am</option>
+				{% else %}
+					<option>11:00am</option>
+				{% endif %}
+				{% if user.profile.weekends_shift1_from == '11:30am' %}
+					<option selected="true">11:30am</option>
+				{% else %}
+					<option>11:30am</option>
+				{% endif %}
+			</select>
+			</div>
+
+			<label for="carName" class="control-label col-sm-1">To</label>
+			<div class="col-sm-4">
+			<select name="weekends_shift1_to" class="form-control">
+				{% if user.profile.weekends_shift1_to == '12:30pm' %}
+					<option selected="true">12:30pm</option>
+				{% else %}
+					<option>12:30pm</option>
+				{% endif %}
+				{% if user.profile.weekends_shift1_to == '01:00pm' %}
+					<option selected="true">01:00pm</option>
+				{% else %}
+					<option>01:00pm</option>
+				{% endif %}
+				{% if user.profile.weekends_shift1_to == '01:30pm' %}
+					<option selected="true">01:30pm</option>
+				{% else %}
+					<option>01:30pm</option>
+				{% endif %}
+				{% if user.profile.weekends_shift1_to == '02:00pm' %}
+					<option selected="true">02:00pm</option>
+				{% else %}
+					<option>02:00pm</option>
+				{% endif %}
+				{% if user.profile.weekends_shift1_to == '02:30pm' %}
+					<option selected="true">02:30pm</option>
+				{% else %}
+					<option>02:30pm</option>
+				{% endif %}
+			</select>
+			</div>
+		</div>
+			<div class="form-group">
+			<label for="carName" class="control-label col-sm-3">2nd Shift :</label>
+			<div class="col-sm-4">
+			<select name="weekends_shift2_from" class="form-control">
+				{% if user.profile.weekends_shift2_from == '05:00pm' %}
+					<option selected="true">05:00pm</option>
+				{% else %}
+					<option>05:00pm</option>
+				{% endif %}
+				{% if user.profile.weekends_shift2_from == '05:30pm' %}
+					<option selected="true">05:30pm</option>
+				{% else %}
+					<option>05:30pm</option>
+				{% endif %}
+				{% if user.profile.weekends_shift2_from == '06:00pm' %}
+					<option selected="true">06:00pm</option>
+				{% else %}
+					<option>06:00pm</option>
+				{% endif %}
+				{% if user.profile.weekends_shift2_from == '06:30pm' %}
+					<option selected="true">06:30pm</option>
+				{% else %}
+					<option>06:30pm</option>
+				{% endif %}
+			</select>
+			</div>
+			<label for="carName" class="control-label col-sm-1">To</label>
+			<div class="col-sm-4">
+			<select name="weekends_shift2_to" class="form-control">
+				{% if user.profile.weekends_shift2_to == '08:00pm' %}
+					<option selected="true">08:00pm</option>
+				{% else %}
+					<option>08:00pm</option>
+				{% endif %}
+				{% if user.profile.weekends_shift2_to == '08:30pm' %}
+					<option selected="true">08:30pm</option>
+				{% else %}
+					<option>08:30pm</option>
+				{% endif %}
+				{% if user.profile.weekends_shift2_to == '09:00pm' %}
+					<option selected="true">09:00pm</option>
+				{% else %}
+					<option>09:00pm</option>
+				{% endif %}
+				{% if user.profile.weekends_shift2_to == '09:30pm' %}
+					<option selected="true">09:30pm</option>
+				{% else %}
+					<option>09:30pm</option>
+				{% endif %}
+			</select>
+			</div>
+		</div>
+			<div class="form-group">
+			<label for="carName" class="control-label col-sm-3">City :</label>
+			<div class="col-sm-4">
+			<select name="city" class="form-control">
+				{% if user.profile.city == 'Noida' %}
+					<option selected="true">Noida</option>
+				{% else %}
+					<option>Noida</option>
+				{% endif %}
+				{% if user.profile.city == 'Greater Noida' %}
+					<option selected="true">Greater Noida</option>
+				{% else %}
+					<option>Greater Noida</option>
+				{% endif %}
+				{% if user.profile.city == 'Agra' %}
+					<option selected="true">Agra</option>
+				{% else %}
+					<option>Agra</option>
+				{% endif %}
+				{% if user.profile.city == 'Allahabad' %}
+					<option selected="true">Allahabad</option>
+				{% else %}
+					<option>Allahabad</option>
+				{% endif %}
+				{% if user.profile.city == 'Lucknow' %}
+					<option selected="true">Lucknow</option>
+				{% else %}
+					<option>Lucknow</option>
+				{% endif %}
+				{% if user.profile.city == 'Jaipur' %}
+					<option selected="true">Jaipur</option>
+				{% else %}
+					<option>Jaipur</option>
+				{% endif %}
+				{% if user.profile.city == 'Haridwar' %}
+					<option selected="true">Haridwar</option>
+				{% else %}
+					<option>Haridwar</option>
+				{% endif %}
+				{% if user.profile.city == 'Rishikesh' %}
+					<option selected="true">Rishikesh</option>
+				{% else %}
+					<option>Rishikesh</option>
+				{% endif %}
+				{% if user.profile.city == 'Shimla' %}
+					<option selected="true">Shimla</option>
+				{% else %}
+					<option>Shimla</option>
+				{% endif %}
+				{% if user.profile.city == 'Ahmedabad' %}
+					<option selected="true">Ahmedabad</option>
+				{% else %}
+					<option>Ahmedabad</option>
+				{% endif %}
+				{% if user.profile.city == 'Gwalior' %}
+					<option selected="true">Gwalior</option>
+				{% else %}
+					<option>Gwalior</option>
+				{% endif %}
+			</select>
+			</div>
+			</div><br/><br/><br/>
+		<div class="col-sm-offset-2 col-sm-2">
+		<button type="submit" class="btn btn-info"> Update </button>
+                </div>
+	</div>
+	</div>
+	</div>
+	</form>
+	</div><br/>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'userbase.html' %}
+{% block title %}
+    <title>Home</title>
+	{% load static %}
+{% endblock %}
+{% block content %}
+    <div class="jumbotron">
+		<div class="well" align="center"  style="color: Purple"><h2>Search Doctor</h2></div>
+
+        <form action='SearchDoctor.html' method='post'>
+                        <div class="row">
+			<div class="col-md-2">
+			<a href="#">
+			<img src="{% static 'img/doc1.jpg' %}" alt="MY pic" width="100"/></a>
+			</div>
+			<div class="col-md-4"  style="font-size:20px">
+			<label for="carName" class="control-label col-sm-5">Doctor Name:</label>
+			<div class="col-sm-7">
+			<input type="text" class="form-control" name="name"/>
+		</div>
+			<br/><br/>
+		<div class="form-group">
+			<label for="StateName" class="control-label col-sm-4">State:</label>
+
+			<div class="col-sm-8">
+			<select name="state" class="form-control">
+				<option>UttarPradesh</option>
+				<option>Maharashtra</option>
+				<option>goa</option>
+				<option>Madhya Pradesh</option>
+				<option>Noida</option>
+				<option>Delhi</option>
+				<option>Harayana</option>
+			</select>
+			</div>
+		</div>
+			</div>
+			<div class="col-md-4"  style="font-size:20px">
+			<label for="carName" class="control-label col-sm-4">Speciality:</label>
+			<div class="col-sm-8">
+			<select name="speciality" class="form-control">
+				<option>Neurosurgery</option>
+				<option>Acupuncture</option>
+				<option>Cardiac Surgery</option>
+				<option>Dentistry</option>
+				<option>Ear, Nose, and Throat</option>
+				<option>Gynecologic Oncology</option>
+				<option>Plastic Surgery</option>
+			</select><br/>
+			</div>
+			<div class="row">
+			<div class="col-sm-4">
+			<label class="control-label col-sm-4">City:</label>
+			</div>
+			<div class="col-sm-8">
+			<select name="city" class="form-control">
+				<option>Agra</option>
+				<option>Noida</option>
+				<option>Delhi</option>
+				<option>Gurugram</option>
+				<option>Meerut</option>
+				<option>Mathura</option>
+				<option>Lucknow</option>
+			</select>
+			</div>
+			</div>
+			</div>
+			<div class="col-md-2">
+			<button type="Submit" class="btn btn-success"><b>Find now</b></button>
+			</div>
+		</div>
+            </form>
+		</div>
+	<div class="alert alert-info" align="center"><p>Overview of Book My Doctor</p></div>
+	<div class="row">
+	<div class="col-md-2">
+				<img src="{% static 'img/doc2.jpg' %}" width="100" height="100">
+				</div>
+	<div class="col-md-2">
+				<img src="{% static 'img/doc3.jpg' %}" width="100" height="100">
+				</div>
+	<div class="col-md-2">
+				<img src="{% static 'img/doc4.jpeg' %}" width="100" height="100">
+				</div>
+	<div class="col-md-2">
+				<img src="{% static 'img/doc5.jpeg' %}" width="100" height="100">
+				</div>
+	<div class="col-md-2" >
+				<img src="{% static 'img/doc6.jpeg' %}" width="100" height="100">
+				</div>
+	<div class="col-md-2">
+				<img src="{% static 'img/doc7.jpg' %}" width="100" height="100">
+				</div>
+				</div>
+{% endblock %}

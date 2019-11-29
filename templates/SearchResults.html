@@ -1,0 +1,38 @@
+{% extends 'userbase.html' %}
+{% block title %}
+    <title>Search Result</title>
+{% endblock %}
+{% block content %}
+    <div class="jumbotron">
+        {% for doctor in doctors %}
+                <div class="row">
+			<div class="col-md-2">
+			<a href="#">
+			<img src="{{ doctor.photo.url }}" alt="MY pic" width="125"/></a>
+			</div>
+			<div class="col-md-5">
+			<b>Name: {{ doctor.name }}</b><br/>
+			<b></b><br/>
+			<b> {{ doctor.experience }} years experience</b><br/>
+			<b>Fee: Rs. {{ doctor.fee }} /-</b><br/><br/>
+			<b>Email: {{ doctor.email }} </b><br/><br/>
+            <b>Address: {{ doctor.address }} </b><br/><br/>
+
+			</div>
+			<div class="col-md-5">
+			    <b>Weekdays Timings: </b><br/>
+			    <b>Morning Shift: {{ doctor.weekdays_shift1_from }} to {{ doctor.weekdays_shift1_to}} </b><br/>
+                <b>Evening Shift: {{ doctor.weekdays_shift2_from }} to {{ doctor.weekdays_shift2_to}} </b><br/><br/>
+                <b>Weekends Timings: </b><br/>
+			    <b>Morning Shift: {{ doctor.weekends_shift1_from }} to {{ doctor.weekends_shift1_to}} </b><br/>
+			    <b>Evening Shift: {{ doctor.weekends_shift2_from }} to {{ doctor.weekends_shift2_to}} </b><br/><br/><br/>
+                         <form action="{% url 'bookappointment' %}" method='post'>
+                             {% csrf_token %}
+                             <input type='hidden' name="doctorid" value='{{ doctor.id }}'>
+                        <button type="Submit" class="btn btn-success"> Book Appointment </button>
+                             <br><br><br>
+			</form></div>
+			</div>
+        {% endfor %}
+		</div>
+{% endblock %}

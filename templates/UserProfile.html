@@ -1,0 +1,30 @@
+{% extends 'userbase.html' %}
+{% block title %}
+    <title>View Profile</title>
+{% endblock %}
+{% block content %}
+    <br/><br/>
+	<div class="well" align="center"  style="color: Purple"><h2>User Profile</h2></div>
+  	<form class="form-horizontal" method="post">
+        {% csrf_token %}
+		<div class="form-group">
+			<label class="control-label col-sm-2">First Name:</label>
+			<div class="col-sm-8">
+                   <input type="text" class="form-control" name="firstname" value="{{ user.first_name }}"/>
+		</div></div>
+        <div class="form-group">
+			<label class="control-label col-sm-2">Last Name:</label>
+			<div class="col-sm-8">
+            <input type="text" class="form-control" name="lastname" value="{{ user.last_name }}"/>
+		</div></div>
+		</div>
+		<div class="form-group">
+			<label for="name" class="control-label col-sm-2">Email id:</label>
+			<div class="col-sm-8">
+			<input type="email" class="form-control" name="email" value="{{ user.email }}"/>
+		</div></div>
+		<div class="col-sm-offset-2 col-sm-8">
+		<button type="submit" class="btn btn-success"> Update </button>&nbsp&nbsp
+		</div><br/><br/><br/>
+		</form><hr/><br/>
+{% endblock %}
